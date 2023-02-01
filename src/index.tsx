@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from 'react-dom/client';
 import { WebglOne } from "./pages/webglTest/WebglOne";
+import { MainBox } from "./components/MainBox";
 
 const App = () => {
 
@@ -11,7 +12,8 @@ const App = () => {
     <div>
       <h1>Hello!!</h1>
       <h2>WR</h2>
-      <WebglOne/>
+      <MainBox/>
+      {/* <WebglOne/> */}
     </div>
   );
 };

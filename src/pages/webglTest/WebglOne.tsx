@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import * as Stats from 'stats.js'
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { initStats } from '../../utlis'
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js'
+import { PropsData } from '../../components/MainBox';
 
 
 export const createHouse = (sc:THREE.Scene) => {
@@ -22,10 +23,16 @@ export const createHouse = (sc:THREE.Scene) => {
 };
 
 export const WebglOne = () => {
+
+    const allData:any = useContext(PropsData);
+
     const init = () => {
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         const scene = new THREE.Scene();
     
+        //雾化
+        scene.fog = new THREE.FogExp2(0xffffff, 0.013);
+
         // create a camera, which defines where we're looking at.
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     
@@ -87,7 +94,7 @@ export const WebglOne = () => {
         sphere.castShadow = true;
 
         // position the sphere
-        sphere.position.set(10, 4, 2);
+        sphere.position.set(10, 4, 6);
     
         // add the sphere to the scene
         scene.add(sphere);
@@ -131,8 +138,8 @@ export const WebglOne = () => {
     
             // bounce the sphere up and down
             step += 0.04;
-            sphere.position.x = 35 + (15 * (Math.cos(step)));
-            sphere.position.y = 2 + (10 * Math.abs(Math.sin(step)));
+            sphere.position.x = 5 + (15 * (Math.cos(step)));
+            sphere.position.y = 7 + (10 * Math.abs(Math.sin(step)));
     
             // render using requestAnimationFrame
             requestAnimationFrame(renderScene);
@@ -149,9 +156,11 @@ export const WebglOne = () => {
     },[])
     return (
         <div>
-            <div>请看</div>
+            <div>watch</div>
+            <button onClick={() => {
+                allData.changePage(allData.PAGE.ORIGIN)
+            }}>switch to origin</button>
             <div id='webgloutput'></div>
-            <div className="hh">ww</div>
         </div>
     )
 }

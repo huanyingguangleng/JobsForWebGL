@@ -52,6 +52,10 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      // {
+      //   test: /\.module\.scss$/,
+      //   use: ['style-loader', 'css-loader', 'postcss-loader','sass-loader'],
+      // },
       // 处理 .less
       {
         test: /\.less$/,
@@ -97,10 +101,10 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.module\.scss$/,
-        use: [IS_DEV_MODE ? 'style-loader' : _loader, 'happypack/loader?id=msass']
-      },
+      // {
+      //   test: /\.module\.scss$/,
+      //   use: [IS_DEV_MODE ? 'style-loader' : _loader, 'happypack/loader?id=msass']
+      // },
       {
         test: /\.png/,
         type: 'asset/resource',
