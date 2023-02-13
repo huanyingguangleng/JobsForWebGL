@@ -11,8 +11,21 @@ export const Anothertest = () => {
 
         const canvas = document.querySelector('#canvas') as HTMLCanvasElement;
         const ctx = canvas?.getContext('2d');
-        ctx?.fillRect(0, 0, 400, 100);
+        let x = 0;
+        let y = 0;
+        const d = 30;
+        const draw = () => {
+            ctx.clearRect(0, 0, 400, 400);
+            ctx?.fillRect(x, y, d, d);
+            x += 30;
+            y += 30;
+        }
+        
+        const interID = setInterval(() => {
+            draw();
 
+        }, 6000)
+        return interID;
     };
 
     useEffect(()=>{init()}, []);
@@ -20,10 +33,13 @@ export const Anothertest = () => {
     return (
         <>
         <div className='cas' style={{border: '1px solid red'}}>origin</div>
+        <canvas id='canvas' width="400" height="400" style={{border: '1px solid red'}}></canvas>
         <button onClick={() => {
             allData.changePage(allData.PAGE.WEBGLTEST);
         }}>switch to webgl-one</button>
-        <canvas id='canvas' width="400" height="400" style={{border: '1px solid red'}}></canvas>
+        <button onClick={() => {
+            clearInterval(init());
+        }}>stop animation</button>
         </>
     )
 }
